@@ -26,16 +26,15 @@ function App() {
       if (type === 'Тип') {
         fetchString = `http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}&minaccessibility=${mindifficulty}&maxaccessibility=${maxdifficulty}&participants=${people}`;
       } else  {
-        fetchString = `http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}&minaccessibility=${mindifficulty}&maxaccessibility=${maxdifficulty}&maxaccessibility=${maxdifficulty}&type=${type}&participants=${people}`;
+        fetchString = `http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}&minaccessibility=${mindifficulty}&maxaccessibility=${maxdifficulty}&type=${type}&participants=${people}`;
       }
     } else {
       if (type === 'Тип') {
         fetchString = `http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}&minaccessibility=${mindifficulty}&maxaccessibility=${maxdifficulty}`;
       } else  {
-        fetchString = `http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}&minaccessibility=${mindifficulty}&maxaccessibility=${maxdifficulty}&maxaccessibility=${maxdifficulty}&type=${type}`;
+        fetchString = `http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}&minaccessibility=${mindifficulty}&maxaccessibility=${maxdifficulty}&type=${type}`;
       }
     }
-    
     
     const response = await fetch(fetchString);
     if (response.ok) {
@@ -93,15 +92,15 @@ function App() {
             </select>
             <select name="type" className="form-select fs-6 border-1 border-dark" aria-label="Default select example">
               <option defaultValue='Тип'>Тип</option>
-              <option value="образование">образование</option>
-              <option value="развлечение">развлечение</option>
-              <option value="общение">общение</option>
-              <option value="сделай сам">сделай сам</option>
-              <option value="благотворительность">благотворительность</option>
-              <option value="приготовление еды">приготовление еды</option>
-              <option value="релаксация">релаксация</option>
-              <option value="музыка">музыка</option>
-              <option value="работа">работа</option>
+              <option value="education">образование</option>
+              <option value="recreational">развлечение</option>
+              <option value="social">общение</option>
+              <option value="diy">сделай сам</option>
+              <option value="charity">благотворительность</option>
+              <option value="cooking">приготовление еды</option>
+              <option value="relaxation">релаксация</option>
+              <option value="music">музыка</option>
+              <option value="busywork">работа</option>
             </select>
             <select name="price" className="form-select fs-6 border-1 border-dark" aria-label="Default select example">
               <option defaultValue='Стоимость'>Стоимость</option>
