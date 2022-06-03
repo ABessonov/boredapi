@@ -7,24 +7,35 @@ function App() {
     const price = document.querySelector("[name='price']").value;
     const type = document.querySelector("[name='type']").value;
     const difficulty = document.querySelector("[name='difficulty']").value;
+    const people = document.querySelector("[name='people']").value;
+
     let minprice = 0;
     let maxprice = 1;
-    if (Number(price) == price) {
+    if (price !== 'Стоимость') {
       minprice = price / 10;
       maxprice = price / 10;
     };
     let mindifficulty = 0;
     let maxdifficulty = 1;
-    if (Number(difficulty) == difficulty) {
+    if (difficulty !== 'Сложность') {
       mindifficulty = difficulty / 10;
       maxdifficulty = difficulty / 10;
     };
     let fetchString = '';
-    if (type == 'Тип') {
-      fetchString = `http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}&minaccessibility=${mindifficulty}&maxaccessibility=${maxdifficulty}`;
+    if (people !== 'Кол-во участников'){
+      if (type === 'Тип') {
+        fetchString = `http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}&minaccessibility=${mindifficulty}&maxaccessibility=${maxdifficulty}&participants=${people}`;
+      } else  {
+        fetchString = `http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}&minaccessibility=${mindifficulty}&maxaccessibility=${maxdifficulty}&maxaccessibility=${maxdifficulty}&type=${type}&participants=${people}`;
+      }
     } else {
-      fetchString = `http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}&minaccessibility=${mindifficulty}&maxaccessibility=${maxdifficulty}&maxaccessibility=${maxdifficulty}&type=${type}`;
+      if (type === 'Тип') {
+        fetchString = `http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}&minaccessibility=${mindifficulty}&maxaccessibility=${maxdifficulty}`;
+      } else  {
+        fetchString = `http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}&minaccessibility=${mindifficulty}&maxaccessibility=${maxdifficulty}&maxaccessibility=${maxdifficulty}&type=${type}`;
+      }
     }
+    
     
     const response = await fetch(fetchString);
     if (response.ok) {
@@ -93,7 +104,7 @@ function App() {
               <option value="работа">работа</option>
             </select>
             <select name="price" className="form-select fs-6 border-1 border-dark" aria-label="Default select example">
-              <option defaultValue='Цена'>Цена</option>
+              <option defaultValue='Стоимость'>Стоимость</option>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -106,7 +117,19 @@ function App() {
               <option value="9">9</option>
               <option value="10">10</option>
             </select>
-            
+            <select name="people" className="form-select fs-6 border-1 border-dark" aria-label="Default select example">
+              <option defaultValue='Кол-во участников'>Кол-во участников</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
           </div>
           <div className={display}>
             <FetchItem resultActivity={resultActivity} />

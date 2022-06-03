@@ -27,7 +27,7 @@ export default function FetchItem({ resultActivity }) {
             </td>
           </tr>
           <tr>
-            <td className="w-25 p-3 border border-dark border-2">Цена</td>
+            <td className="w-25 p-3 border border-dark border-2">Стоимость</td>
             <td className="w-75 p-3 border border-dark border-2">
               {price * 10}/10
             </td>
