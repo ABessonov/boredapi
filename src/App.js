@@ -4,9 +4,29 @@ import FetchItem from "./FetchItem";
 function App() {
   let [resultActivity, setState] = React.useState({});
   async function fetchBored() {
-    const response = await fetch(
-      "http://www.boredapi.com/api/activity?minprice=0&maxprice=1"
-    );
+    const price = document.querySelector("[name='price']").value;
+    const type = document.querySelector("[name='type']").value;
+    const difficulty = document.querySelector("[name='difficulty']").value;
+    let minprice = 0;
+    let maxprice = 1;
+    if (Number(price) == price) {
+      minprice = price / 10;
+      maxprice = price / 10;
+    };
+    let mindifficulty = 0;
+    let maxdifficulty = 1;
+    if (Number(difficulty) == difficulty) {
+      mindifficulty = difficulty / 10;
+      maxdifficulty = difficulty / 10;
+    };
+    let fetchString = '';
+    if (type == 'Тип') {
+      fetchString = `http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}&minaccessibility=${mindifficulty}&maxaccessibility=${maxdifficulty}`;
+    } else {
+      fetchString = `http://www.boredapi.com/api/activity?minprice=${minprice}&maxprice=${maxprice}&minaccessibility=${mindifficulty}&maxaccessibility=${maxdifficulty}&maxaccessibility=${maxdifficulty}&type=${type}`;
+    }
+    
+    const response = await fetch(fetchString);
     if (response.ok) {
       const result = await response.json();
       resultActivity = result;
@@ -44,10 +64,10 @@ function App() {
         >
           Найти!
         </button>
-        <div class="w-75 p-3">
+        <div className="w-75 p-3">
           <div className="d-flex">
-            <select name="difficulty" class="form-select fs-6 border-1 border-dark" aria-label="Default select example">
-              <option selected>Сложность</option>
+            <select name="difficulty" className="form-select fs-6 border-1 border-dark" aria-label="Default select example">
+              <option defaultValue='Сложность'>Сложность</option>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -60,8 +80,8 @@ function App() {
               <option value="9">9</option>
               <option value="10">10</option>
             </select>
-            <select name="type" class="form-select fs-6 border-1 border-dark" aria-label="Default select example">
-              <option selected>Тип</option>
+            <select name="type" className="form-select fs-6 border-1 border-dark" aria-label="Default select example">
+              <option defaultValue='Тип'>Тип</option>
               <option value="образование">образование</option>
               <option value="развлечение">развлечение</option>
               <option value="общение">общение</option>
@@ -72,8 +92,8 @@ function App() {
               <option value="музыка">музыка</option>
               <option value="работа">работа</option>
             </select>
-            <select name="price" class="form-select fs-6 border-1 border-dark" aria-label="Default select example">
-              <option selected>Цена</option>
+            <select name="price" className="form-select fs-6 border-1 border-dark" aria-label="Default select example">
+              <option defaultValue='Цена'>Цена</option>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
